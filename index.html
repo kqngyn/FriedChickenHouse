@@ -1,1 +1,427 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fried Chicken House</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Nunito:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --orange: #f37a21;
+        --brown: #73381c;
+        --cream: #fdf8f2;
+        --cream-dark: #f5ede0;
+        --cream-border: #ead9c6;
+      }
 
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Nunito", sans-serif;
+        background-color: var(--cream);
+        color: var(--brown);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* NAV */
+      nav {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 28px 64px;
+      }
+
+      .nav-logo img {
+        height: 48px;
+        object-fit: contain;
+      }
+
+      .nav-order {
+        background: var(--brown);
+        color: var(--cream);
+        padding: 11px 26px;
+        border-radius: 100px;
+        font-family: "Nunito", sans-serif;
+        font-weight: 700;
+        font-size: 0.85rem;
+        text-decoration: none;
+        letter-spacing: 0.04em;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+      .nav-order:hover {
+        background: var(--orange);
+        transform: translateY(-1px);
+      }
+
+      /* HERO */
+      .hero {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        padding: 140px 64px 80px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -200px;
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(
+          circle,
+          rgba(243, 122, 33, 0.08) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      /* LEFT — logo */
+      .hero-left {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: fadeUp 0.7s ease both;
+      }
+
+      .hero-left img {
+        width: 100%;
+        max-width: 480px;
+        object-fit: contain;
+        filter: drop-shadow(0 24px 48px rgba(115, 56, 28, 0.13));
+      }
+
+      /* RIGHT — text */
+      .hero-right {
+        animation: fadeUp 0.7s 0.12s ease both;
+        opacity: 0;
+        animation-fill-mode: forwards;
+      }
+
+      .hero-eyebrow {
+        display: inline-block;
+        background: var(--cream-dark);
+        border: 1.5px solid var(--cream-border);
+        border-radius: 100px;
+        padding: 6px 16px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--orange);
+        margin-bottom: 24px;
+      }
+
+      .hero-headline {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(2.4rem, 4vw, 3.6rem);
+        font-weight: 800;
+        line-height: 1.08;
+        color: var(--brown);
+        margin-bottom: 16px;
+      }
+
+      .hero-headline span {
+        color: var(--orange);
+      }
+
+      .hero-sub {
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.75;
+        color: var(--brown);
+        opacity: 0.6;
+        margin-bottom: 40px;
+        max-width: 380px;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .btn-primary {
+        background: var(--orange);
+        color: #fff;
+        padding: 14px 32px;
+        border-radius: 100px;
+        font-family: "Nunito", sans-serif;
+        font-weight: 700;
+        font-size: 0.92rem;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+        display: inline-block;
+      }
+      .btn-primary:hover {
+        background: var(--brown);
+        transform: translateY(-2px);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--brown);
+        padding: 14px 32px;
+        border-radius: 100px;
+        font-family: "Nunito", sans-serif;
+        font-weight: 700;
+        font-size: 0.92rem;
+        text-decoration: none;
+        border: 2px solid var(--cream-border);
+        transition:
+          border-color 0.2s,
+          color 0.2s,
+          transform 0.15s;
+        display: inline-block;
+      }
+      .btn-secondary:hover {
+        border-color: var(--orange);
+        color: var(--orange);
+        transform: translateY(-2px);
+      }
+
+      /* FOOTER */
+      footer {
+        background: var(--brown);
+        padding: 32px 64px;
+      }
+
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        flex-wrap: wrap;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer-logo img {
+        height: 34px;
+        object-fit: contain;
+        filter: brightness(0) invert(1);
+        opacity: 0.8;
+      }
+
+      .footer-info {
+        display: flex;
+        gap: 32px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .footer-info-item {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: rgba(253, 248, 242, 0.45);
+      }
+
+      .footer-info-item span {
+        color: rgba(253, 248, 242, 0.8);
+      }
+
+      .footer-right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .footer-social {
+        display: flex;
+        gap: 10px;
+      }
+
+      .social-link {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255, 255, 255, 0.18);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        color: rgba(253, 248, 242, 0.7);
+        text-decoration: none;
+        transition:
+          border-color 0.2s,
+          background 0.2s,
+          color 0.2s;
+      }
+      .social-link:hover {
+        border-color: var(--orange);
+        background: var(--orange);
+        color: #fff;
+      }
+
+      .footer-copy {
+        font-size: 0.73rem;
+        color: rgba(253, 248, 242, 0.25);
+        white-space: nowrap;
+      }
+
+      .footer-credit {
+        color: rgba(253, 248, 242, 0.45);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-credit:hover {
+        color: var(--orange);
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 768px) {
+        nav {
+          padding: 20px 24px;
+        }
+        .nav-logo img {
+          height: 38px;
+        }
+        .hero {
+          padding: 110px 24px 72px;
+        }
+        .hero-inner {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .hero-left img {
+          max-width: 260px;
+        }
+        .hero-right {
+          text-align: center;
+        }
+        .hero-sub {
+          max-width: 100%;
+        }
+        .hero-actions {
+          justify-content: center;
+        }
+        footer {
+          padding: 28px 24px;
+        }
+        .footer-inner {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 20px;
+        }
+        .footer-info {
+          flex-direction: column;
+          gap: 10px;
+        }
+        .footer-right {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a class="nav-logo" href="#">
+        <img src="assets/LOGOFINAL.png" alt="Fried Chicken House" />
+      </a>
+      <a class="nav-order" href="#">Order Online</a>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-left">
+          <img src="assets/LOGOFINAL.png" alt="Fried Chicken House" />
+        </div>
+
+        <div class="hero-right">
+          <span class="hero-eyebrow">San Diego, CA</span>
+          <h1 class="hero-headline">
+            Crispy. <span>Bold.</span><br />Made Fresh.
+          </h1>
+          <p class="hero-sub">
+            San Diego's home for real fried chicken. Come hungry, leave happy.
+          </p>
+          <div class="hero-actions">
+            <a href="#" class="btn-primary">Order Online</a>
+            <a href="#" class="btn-secondary">Get Directions</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-logo">
+          <img src="assets/LOGOFINAL.png" alt="Fried Chicken House" />
+        </div>
+        <div class="footer-info">
+          <div class="footer-info-item">
+            <span>123 Placeholder St, San Diego, CA</span>
+          </div>
+          <div class="footer-info-item"><span>(000) 000-0000</span></div>
+          <div class="footer-info-item">
+            <span>Mon–Sun: 00:00 AM – 00:00 PM</span>
+          </div>
+        </div>
+        <div class="footer-right">
+          <div class="footer-social">
+            <a href="#" class="social-link" aria-label="Instagram">IG</a>
+            <a href="#" class="social-link" aria-label="Facebook">FB</a>
+            <a href="#" class="social-link" aria-label="TikTok">TK</a>
+          </div>
+          <p class="footer-copy">© 2026 Fried Chicken House</p>
+          <p class="footer-copy">
+            Designed by
+            <a
+              href="https://khoiqnguyen.com"
+              target="_blank"
+              rel="noopener"
+              class="footer-credit"
+              >Khoi Nguyen</a
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
