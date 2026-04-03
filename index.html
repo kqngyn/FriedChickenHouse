@@ -216,91 +216,159 @@
       /* FOOTER */
       footer {
         background: var(--brown);
-        padding: 32px 64px;
+        padding: 52px 64px 0;
       }
 
-      .footer-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 24px;
-        flex-wrap: wrap;
+      .footer-main {
+        display: grid;
+        grid-template-columns: 1fr 1.4fr 1fr;
+        gap: 48px;
         max-width: 1200px;
         margin: 0 auto;
+        padding-bottom: 48px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* Left col */
+      .footer-brand {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
       }
 
       .footer-logo img {
-        height: 34px;
+        height: 36px;
         object-fit: contain;
         filter: brightness(0) invert(1);
-        opacity: 0.8;
+        opacity: 0.85;
       }
 
+      .footer-tagline {
+        font-size: 0.82rem;
+        line-height: 1.65;
+        color: rgba(253, 248, 242, 0.45);
+        max-width: 200px;
+      }
+
+      /* Center col */
       .footer-info {
         display: flex;
-        gap: 32px;
-        align-items: center;
-        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .footer-info-label {
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--orange);
+        margin-bottom: 2px;
       }
 
       .footer-info-item {
-        font-size: 0.8rem;
+        font-size: 0.82rem;
         font-weight: 600;
-        color: rgba(253, 248, 242, 0.45);
+        color: rgba(253, 248, 242, 0.75);
+        line-height: 1.5;
       }
 
-      .footer-info-item span {
-        color: rgba(253, 248, 242, 0.8);
+      .footer-info-divider {
+        width: 32px;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.12);
+        margin: 4px 0;
       }
 
+      /* Right col */
       .footer-right {
         display: flex;
-        align-items: center;
+        flex-direction: column;
+        align-items: flex-end;
         gap: 20px;
+      }
+
+      .footer-social-label {
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--orange);
+        align-self: flex-end;
       }
 
       .footer-social {
         display: flex;
-        gap: 10px;
+        gap: 8px;
       }
 
       .social-link {
-        width: 32px;
-        height: 32px;
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
-        border: 1.5px solid rgba(255, 255, 255, 0.18);
+        border: 1.5px solid rgba(255, 255, 255, 0.15);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 0.72rem;
+        font-size: 0.68rem;
         font-weight: 700;
         letter-spacing: 0.03em;
-        color: rgba(253, 248, 242, 0.7);
+        color: rgba(253, 248, 242, 0.6);
         text-decoration: none;
         transition:
           border-color 0.2s,
           background 0.2s,
-          color 0.2s;
+          color 0.2s,
+          transform 0.15s;
       }
       .social-link:hover {
         border-color: var(--orange);
         background: var(--orange);
         color: #fff;
+        transform: translateY(-2px);
+      }
+
+      .footer-order-link {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: rgba(253, 248, 242, 0.5);
+        text-decoration: none;
+        text-align: right;
+        transition: color 0.2s;
+      }
+      .footer-order-link:hover {
+        color: var(--orange);
+      }
+
+      /* Bottom bar */
+      .footer-bottom {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
       }
 
       .footer-copy {
         font-size: 0.73rem;
-        color: rgba(253, 248, 242, 0.25);
-        white-space: nowrap;
+        color: rgba(253, 248, 242, 0.22);
       }
 
       .footer-credit {
-        color: rgba(253, 248, 242, 0.45);
+        font-size: 0.73rem;
+        color: rgba(253, 248, 242, 0.35);
         text-decoration: none;
         transition: color 0.2s;
+        white-space: nowrap;
       }
       .footer-credit:hover {
         color: var(--orange);
+      }
+
+      .footer-credit span {
+        color: rgba(253, 248, 242, 0.22);
       }
 
       @keyframes fadeUp {
@@ -341,21 +409,23 @@
           justify-content: center;
         }
         footer {
-          padding: 28px 24px;
+          padding: 40px 24px 0;
         }
-        .footer-inner {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 20px;
-        }
-        .footer-info {
-          flex-direction: column;
-          gap: 10px;
+        .footer-main {
+          grid-template-columns: 1fr;
+          gap: 32px;
         }
         .footer-right {
+          align-items: flex-start;
+        }
+        .footer-social-label {
+          align-self: flex-start;
+        }
+        .footer-bottom {
           flex-direction: column;
           align-items: flex-start;
-          gap: 12px;
+          gap: 8px;
+          padding: 20px 0;
         }
       }
     </style>
@@ -408,23 +478,38 @@
     </section>
 
     <footer>
-      <div class="footer-inner">
-        <div class="footer-logo">
-          <img src="assets/LOGOFINAL.png" alt="Fried Chicken House" />
+      <div class="footer-main">
+        <!-- Brand -->
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="assets/LOGOFINAL.png" alt="Fried Chicken House" />
+          </div>
+          <p class="footer-tagline">
+            San Diego's home for real fried chicken. Come hungry, leave happy.
+          </p>
         </div>
+
+        <!-- Info -->
         <div class="footer-info">
-          <div class="footer-info-item">
-            <span>120W Washington St, Ste B, San Diego CA 92103</span>
-          </div>
-          <div class="footer-info-item"><span>(619) 228-9236</span></div>
-          <div class="footer-info-item">
-            <span>Mon–Fri: 10:30 AM – 3:00 PM &amp; 4:00 – 9:00 PM</span>
-          </div>
-          <div class="footer-info-item">
-            <span>Sat–Sun: 11:00 AM – 3:00 PM &amp; 4:00 – 9:00 PM</span>
-          </div>
+          <p class="footer-info-label">Location</p>
+          <p class="footer-info-item">
+            120W Washington St, Ste B<br />San Diego, CA 92103
+          </p>
+          <div class="footer-info-divider"></div>
+          <p class="footer-info-label">Hours</p>
+          <p class="footer-info-item">
+            Mon–Fri: 10:30 AM – 3:00 PM &amp; 4:00 – 9:00 PM
+          </p>
+          <p class="footer-info-item">
+            Sat–Sun: 11:00 AM – 3:00 PM &amp; 4:00 – 9:00 PM
+          </p>
+          <div class="footer-info-divider"></div>
+          <p class="footer-info-item">(619) 228-9236</p>
         </div>
+
+        <!-- Social & Order -->
         <div class="footer-right">
+          <p class="footer-social-label">Find Us</p>
           <div class="footer-social">
             <a
               href="https://www.instagram.com/friedchickenhse?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
@@ -450,19 +535,35 @@
               aria-label="Uber Eats"
               >UE</a
             >
-          </div>
-          <p class="footer-copy">© 2026 Fried Chicken House</p>
-          <p class="footer-copy">
-            Designed by
             <a
-              href="https://khoiqnguyen.com"
+              href="https://www.doordash.com/store/fried-chicken-house-san-diego-24998290/31555964/"
               target="_blank"
               rel="noopener"
-              class="footer-credit"
-              >Khoi Nguyen</a
+              class="social-link"
+              aria-label="DoorDash"
+              >DD</a
             >
-          </p>
+          </div>
+          <a
+            href="https://order.snackpass.co/69cbf430a225646ad0b8a2bc"
+            target="_blank"
+            rel="noopener"
+            class="footer-order-link"
+            >Order Online &rarr;</a
+          >
         </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Fried Chicken House</p>
+        <a
+          href="https://khoiqnguyen.com"
+          target="_blank"
+          rel="noopener"
+          class="footer-credit"
+          ><span>Designed by </span>Khoi Nguyen</a
+        >
       </div>
     </footer>
   </body>
