@@ -1,0 +1,955 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu — Fried Chicken House</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* ===== PAGE HERO ===== */
+      .page-hero {
+        position: relative;
+        height: 50vh;
+        min-height: 360px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: var(--brown-dark);
+      }
+
+      .page-hero-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.25;
+      }
+
+      .page-hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+      }
+
+      .page-hero-content .heading-xl {
+        color: var(--white);
+        animation: heroIn 0.7s ease both;
+      }
+
+      .page-hero-content .heading-xl .thin {
+        display: block;
+        font-size: 0.45em;
+        letter-spacing: 0.1em;
+        opacity: 0.5;
+      }
+
+      @keyframes heroIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* ===== MENU LAYOUT ===== */
+      .menu-section {
+        padding: 80px 48px;
+        position: relative;
+        overflow: hidden;
+        border-left: 3px solid var(--orange);
+        border-right: 3px solid var(--orange);
+      }
+
+      .menu-section:nth-child(odd) {
+        background: var(--white);
+      }
+
+      .menu-section-inner {
+        max-width: var(--max-width);
+        margin: 0 auto;
+      }
+
+      .menu-section-header {
+        display: flex;
+        align-items: baseline;
+        gap: 24px;
+        margin-bottom: 48px;
+      }
+
+      .menu-section-num {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 200;
+        font-size: 3rem;
+        color: rgba(243, 122, 33, 0.15);
+        line-height: 1;
+      }
+
+      .menu-section-line {
+        flex: 1;
+        height: 1.5px;
+        background: var(--cream-border);
+      }
+
+      /* Price grid */
+      .price-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 10px;
+        margin-bottom: 36px;
+      }
+
+      .price-card {
+        border: 1.5px solid var(--cream-border);
+        padding: 16px 20px;
+        text-align: center;
+        transition: border-color var(--transition), background var(--transition);
+      }
+
+      .price-card:hover {
+        border-color: var(--orange);
+        background: rgba(243, 122, 33, 0.03);
+      }
+
+      .price-card .qty {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--brown);
+      }
+
+      .price-card .price {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: var(--orange);
+        margin-top: 4px;
+      }
+
+      /* Info blocks */
+      .menu-info-row {
+        display: flex;
+        gap: 48px;
+        flex-wrap: wrap;
+        margin-top: 32px;
+      }
+
+      .menu-info-block {
+        flex: 1;
+        min-width: 200px;
+      }
+
+      .menu-info-block h4 {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        font-size: 0.82rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--orange);
+        margin-bottom: 12px;
+      }
+
+      .menu-info-block ul {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 16px;
+      }
+
+      .menu-info-block li {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.88rem;
+        font-weight: 400;
+        color: var(--text-muted);
+      }
+
+      .menu-info-block li::before {
+        content: '';
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        background: var(--orange);
+        border-radius: 50%;
+        margin-right: 8px;
+        vertical-align: middle;
+        opacity: 0.5;
+      }
+
+      /* Combo callout */
+      .combo-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 28px;
+      }
+
+      .combo-badge {
+        border: 1.5px solid var(--orange);
+        padding: 12px 24px;
+        text-align: center;
+      }
+
+      .combo-badge .combo-title {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        color: var(--orange);
+        letter-spacing: 0.06em;
+      }
+
+      .combo-badge .combo-desc {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.72rem;
+        font-weight: 300;
+        color: var(--text-muted);
+        margin-top: 2px;
+      }
+
+      /* Menu items list (sandwiches, etc) */
+      .menu-items-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 12px;
+      }
+
+      .menu-item-card {
+        border: 1.5px solid var(--cream-border);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        transition: border-color var(--transition);
+      }
+
+      .menu-item-card:hover {
+        border-color: var(--orange);
+      }
+
+      .menu-item-card .item-name {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        color: var(--brown);
+      }
+
+      .menu-item-card .item-price {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: var(--orange);
+      }
+
+      .menu-item-card .item-desc {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.78rem;
+        font-weight: 300;
+        color: var(--text-muted);
+        line-height: 1.5;
+      }
+
+      /* Sides table */
+      .sides-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+
+      .sides-block h4 {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        text-transform: uppercase;
+        color: var(--brown);
+        margin-bottom: 4px;
+      }
+
+      .sides-block .sides-price {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.82rem;
+        color: var(--orange);
+        margin-bottom: 12px;
+      }
+
+      .sides-block ul {
+        list-style: none;
+        columns: 2;
+        column-gap: 24px;
+      }
+
+      .sides-block li {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 300;
+        color: var(--text-muted);
+        padding: 3px 0;
+      }
+
+      /* Family size */
+      .family-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .family-card {
+        border: 2px solid var(--orange);
+        padding: 32px;
+        text-align: center;
+      }
+
+      .family-card h4 {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        color: var(--brown);
+        margin-bottom: 8px;
+      }
+
+      .family-card .family-price {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+        font-size: 2.2rem;
+        color: var(--orange);
+        margin-bottom: 16px;
+      }
+
+      .family-card ul {
+        list-style: none;
+      }
+
+      .family-card li {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 400;
+        color: var(--text-muted);
+        padding: 2px 0;
+      }
+
+      /* Section feature image */
+      .menu-section-img {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        margin-bottom: 40px;
+        border: 1.5px solid var(--cream-border);
+      }
+
+      /* Highlight banner */
+      .menu-highlight {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .menu-highlight-bg {
+        width: 100%;
+        height: 380px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .menu-highlight-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(105deg, rgba(74, 34, 16, 0.9) 0%, rgba(74, 34, 16, 0.3) 100%);
+        display: flex;
+        align-items: center;
+        padding: 0 48px;
+        border-left: 3px solid var(--orange);
+        border-right: 3px solid var(--orange);
+      }
+
+      .menu-highlight-text {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .menu-highlight-text .heading-lg {
+        color: var(--white);
+        margin-bottom: 14px;
+      }
+
+      .menu-highlight-text .text-body {
+        color: rgba(253, 248, 242, 0.55);
+        margin-bottom: 28px;
+      }
+
+      /* Order CTA */
+      .order-cta {
+        padding: 80px 48px;
+        text-align: center;
+        background: var(--brown-dark);
+      }
+
+      .order-cta .heading-lg {
+        color: var(--cream);
+        margin-bottom: 14px;
+      }
+
+      .order-cta .text-body {
+        color: rgba(253, 248, 242, 0.4);
+        margin: 0 auto 32px;
+        max-width: 400px;
+      }
+
+      .order-platforms {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 24px;
+      }
+
+      .platform-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 11px 24px;
+        border: 1.5px solid rgba(255, 255, 255, 0.12);
+        color: rgba(253, 248, 242, 0.6);
+        font-family: 'Oswald', sans-serif;
+        font-weight: 500;
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition: border-color var(--transition), background var(--transition), color var(--transition), transform var(--transition), box-shadow var(--transition);
+      }
+
+      .platform-btn img {
+        width: 16px;
+        height: 16px;
+        filter: brightness(0) invert(1) opacity(0.55);
+        transition: filter var(--transition);
+      }
+
+      .platform-btn:hover {
+        border-color: var(--orange);
+        background: var(--orange);
+        color: var(--white);
+        transform: translate(3px, -3px);
+        box-shadow: -3px 3px 0 0 var(--orange-light);
+      }
+      .platform-btn:hover img {
+        filter: brightness(0) invert(1);
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 900px) {
+        .menu-section { padding: 56px 24px; }
+        .price-grid { grid-template-columns: repeat(3, 1fr); }
+        .menu-items-grid { grid-template-columns: 1fr 1fr; }
+        .sides-grid { grid-template-columns: 1fr; }
+        .family-grid { grid-template-columns: 1fr; }
+        .menu-highlight-bg { height: 300px; }
+        .menu-highlight-overlay { padding: 0 24px; }
+        .order-cta { padding: 56px 24px; }
+        .menu-info-row { gap: 28px; }
+      }
+
+      @media (max-width: 600px) {
+        .price-grid { grid-template-columns: repeat(2, 1fr); }
+        .menu-items-grid { grid-template-columns: 1fr; }
+        .menu-highlight-bg { height: 360px; }
+        .menu-highlight-overlay {
+          align-items: flex-end;
+          padding-bottom: 36px;
+          background: linear-gradient(to top, rgba(74, 34, 16, 0.95) 0%, rgba(74, 34, 16, 0.15) 100%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+      <a class="nav-logo" href="index.html">
+        <img src="assets/LOGOFINAL.png" alt="Fried Chicken House" />
+      </a>
+      <div class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html" class="active">Menu</a></li>
+        <li><a href="about.html">About</a></li>
+        <li>
+          <a href="https://order.snackpass.co/69cbf430a225646ad0b8a2bc"
+            target="_blank" rel="noopener noreferrer" class="nav-cta">Order Online</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <img class="page-hero-bg" src="assets/hillcrest12.jpg" alt="Chicken flat lay" />
+      <div class="page-hero-content">
+        <h1 class="heading-xl">
+          <span class="thin">Crispy, Bold &amp; Fresh</span>
+          Our <span class="accent">Menu</span>
+        </h1>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee">
+      <div class="marquee-track">
+        <span class="marquee-item">Fried Chicken <span class="dot"></span></span>
+        <span class="marquee-item">Party Wings <span class="dot"></span></span>
+        <span class="marquee-item">Sandwiches <span class="dot"></span></span>
+        <span class="marquee-item">Seafood <span class="dot"></span></span>
+        <span class="marquee-item">Sides <span class="dot"></span></span>
+        <span class="marquee-item">Family Size <span class="dot"></span></span>
+        <span class="marquee-item">Combos <span class="dot"></span></span>
+        <span class="marquee-item">Fried Chicken <span class="dot"></span></span>
+        <span class="marquee-item">Party Wings <span class="dot"></span></span>
+        <span class="marquee-item">Sandwiches <span class="dot"></span></span>
+        <span class="marquee-item">Seafood <span class="dot"></span></span>
+        <span class="marquee-item">Sides <span class="dot"></span></span>
+        <span class="marquee-item">Family Size <span class="dot"></span></span>
+        <span class="marquee-item">Combos <span class="dot"></span></span>
+      </div>
+    </div>
+
+    <!-- 01 FRIED CHICKEN -->
+    <section class="menu-section">
+      <div class="menu-section-inner">
+        <div class="menu-section-header fade-up">
+          <span class="menu-section-num">01</span>
+          <h2 class="heading-lg"><span class="accent">Fried</span> Chicken</h2>
+          <div class="menu-section-line"></div>
+        </div>
+
+        <img src="assets/hillcrest27.jpg" alt="Fried chicken spread" class="menu-section-img fade-up" />
+
+        <h3 class="heading-sm" style="margin-bottom:16px;">Choose Pieces</h3>
+        <div class="price-grid fade-up">
+          <div class="price-card">
+            <div class="qty">2 PCS</div>
+            <div class="price">$6.99</div>
+          </div>
+          <div class="price-card">
+            <div class="qty">4 PCS</div>
+            <div class="price">$11.99</div>
+          </div>
+          <div class="price-card">
+            <div class="qty">6 PCS</div>
+            <div class="price">$15.99</div>
+          </div>
+          <div class="price-card">
+            <div class="qty">8 PCS</div>
+            <div class="price">$18.99</div>
+          </div>
+          <div class="price-card">
+            <div class="qty">10 PCS</div>
+            <div class="price">$22.99</div>
+          </div>
+          <div class="price-card">
+            <div class="qty">12 PCS</div>
+            <div class="price">$26.99</div>
+          </div>
+          <div class="price-card">
+            <div class="qty">16 PCS</div>
+            <div class="price">$34.99</div>
+          </div>
+        </div>
+
+        <div class="menu-info-row fade-up">
+          <div class="menu-info-block">
+            <h4>Choose Your Parts</h4>
+            <ul>
+              <li>Tender</li>
+              <li>Whole Wing</li>
+              <li>Thigh</li>
+              <li>Drumstick</li>
+            </ul>
+          </div>
+          <div class="menu-info-block">
+            <h4>Choose Your Flavor</h4>
+            <ul>
+              <li>House Crispy</li>
+              <li>Salt &amp; Pepper</li>
+              <li>Sichuan Style Spicy (Mild / Regular / Super)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="combo-row fade-up">
+          <div class="combo-badge">
+            <div class="combo-title">Combo +$6</div>
+            <div class="combo-desc">1 Side + 1 Drink</div>
+          </div>
+          <div class="combo-badge">
+            <div class="combo-title">Deluxe Combo +$10</div>
+            <div class="combo-desc">2 Sides + 2 Drinks</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HIGHLIGHT -->
+    <div class="menu-highlight">
+      <img src="assets/hillcrest30.jpg" alt="Sauce on chicken" class="menu-highlight-bg" />
+      <div class="menu-highlight-overlay">
+        <div class="menu-highlight-text fade-up">
+          <span class="eyebrow" style="border-color:rgba(255,255,255,0.15);background:rgba(255,255,255,0.06);color:var(--orange-light);">House Sauces</span>
+          <h2 class="heading-lg" style="margin-top:20px;">Sauced to <span class="accent">Perfection</span></h2>
+          <p class="text-body">Ranch, honey mustard, hot sauce, or our signature cheese drizzle.</p>
+          <a href="https://order.snackpass.co/69cbf430a225646ad0b8a2bc" target="_blank" rel="noopener" class="btn btn-outline-light">Order Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 PARTY WINGS -->
+    <section class="menu-section">
+      <div class="menu-section-inner">
+        <div class="menu-section-header fade-up">
+          <span class="menu-section-num">02</span>
+          <h2 class="heading-lg"><span class="accent">Party</span> Wings</h2>
+          <div class="menu-section-line"></div>
+        </div>
+
+        <img src="assets/hillcrest9.jpg" alt="Crispy wings" class="menu-section-img fade-up" />
+
+        <h3 class="heading-sm" style="margin-bottom:16px;">Choose Pieces</h3>
+        <div class="price-grid fade-up">
+          <div class="price-card">
+            <div class="qty">6 PCS</div>
+            <div class="price">$10.99</div>
+          </div>
+          <div class="price-card">
+            <div class="qty">12 PCS</div>
+            <div class="price">$18.99</div>
+          </div>
+          <div class="price-card">
+            <div class="qty">18 PCS</div>
+            <div class="price">$26.99</div>
+          </div>
+          <div class="price-card">
+            <div class="qty">24 PCS</div>
+            <div class="price">$34.99</div>
+          </div>
+        </div>
+
+        <div class="menu-info-row fade-up">
+          <div class="menu-info-block">
+            <h4>Choose Flavor</h4>
+            <ul>
+              <li>OG Crispy</li>
+              <li>Sichuan Style</li>
+              <li>Salt Pepper</li>
+              <li>Buffalo</li>
+              <li>Garlic Parmesan</li>
+              <li>Hot Hillcrest</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="combo-row fade-up">
+          <div class="combo-badge">
+            <div class="combo-title">Combo +$6</div>
+            <div class="combo-desc">1 Side + 1 Drink</div>
+          </div>
+          <div class="combo-badge">
+            <div class="combo-title">Deluxe Combo +$10</div>
+            <div class="combo-desc">2 Sides + 2 Drinks</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 SANDWICHES -->
+    <section class="menu-section">
+      <div class="menu-section-inner">
+        <div class="menu-section-header fade-up">
+          <span class="menu-section-num">03</span>
+          <h2 class="heading-lg"><span class="accent">Chicken</span> Sandwiches</h2>
+          <div class="menu-section-line"></div>
+        </div>
+
+        <img src="assets/hillcrest26.jpg" alt="Chicken sandwich" class="menu-section-img fade-up" style="object-position:center 65%;" />
+
+        <div class="menu-items-grid fade-up">
+          <div class="menu-item-card">
+            <span class="item-name">Spicy Sandwich</span>
+            <span class="item-price">$6.99</span>
+          </div>
+          <div class="menu-item-card">
+            <span class="item-name">Classic Sandwich</span>
+            <span class="item-price">$6.99</span>
+          </div>
+          <div class="menu-item-card">
+            <span class="item-name">Fish Sandwich</span>
+            <span class="item-price">$7.99</span>
+          </div>
+          <div class="menu-item-card">
+            <span class="item-name">Ranchero Buffalo Sandwich</span>
+            <span class="item-price">$6.99</span>
+          </div>
+        </div>
+
+        <div class="combo-row fade-up">
+          <div class="combo-badge">
+            <div class="combo-title">Combo +$6</div>
+            <div class="combo-desc">1 Side + 1 Drink</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 SEAFOOD -->
+    <section class="menu-section">
+      <div class="menu-section-inner">
+        <div class="menu-section-header fade-up">
+          <span class="menu-section-num">04</span>
+          <h2 class="heading-lg"><span class="accent">Seafood</span> By The Sea</h2>
+          <div class="menu-section-line"></div>
+        </div>
+
+        <img src="assets/hillcrest31.jpg" alt="Fried seafood" class="menu-section-img fade-up" />
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;" class="fade-up">
+          <div>
+            <h3 class="heading-sm" style="margin-bottom:16px;">Flounder Fish</h3>
+            <div class="price-grid" style="grid-template-columns:repeat(3,1fr);">
+              <div class="price-card">
+                <div class="qty">1 PC</div>
+                <div class="price">$5.99</div>
+              </div>
+              <div class="price-card">
+                <div class="qty">2 PCS</div>
+                <div class="price">$8.99</div>
+              </div>
+              <div class="price-card">
+                <div class="qty">3 PCS</div>
+                <div class="price">$11.99</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3 class="heading-sm" style="margin-bottom:16px;">Shrimp + Fries</h3>
+            <div class="price-grid" style="grid-template-columns:repeat(3,1fr);">
+              <div class="price-card">
+                <div class="qty">6 PCS</div>
+                <div class="price">$9.99</div>
+              </div>
+              <div class="price-card">
+                <div class="qty">12 PCS</div>
+                <div class="price">$17.99</div>
+              </div>
+              <div class="price-card">
+                <div class="qty">18 PCS</div>
+                <div class="price">$22.99</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="combo-row fade-up">
+          <div class="combo-badge">
+            <div class="combo-title">Combo +$6</div>
+            <div class="combo-desc">1 Side + 1 Drink</div>
+          </div>
+          <div class="combo-badge">
+            <div class="combo-title">Deluxe Combo +$10</div>
+            <div class="combo-desc">2 Sides + 2 Drinks</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 SIDES -->
+    <section class="menu-section">
+      <div class="menu-section-inner">
+        <div class="menu-section-header fade-up">
+          <span class="menu-section-num">05</span>
+          <h2 class="heading-lg"><span class="accent">Sides</span></h2>
+          <div class="menu-section-line"></div>
+        </div>
+
+        <img src="assets/hillcrest16.jpg" alt="Fries and dipping" class="menu-section-img fade-up" />
+
+        <div class="sides-grid fade-up">
+          <div class="sides-block">
+            <h4>Signature Sides</h4>
+            <div class="sides-price">R $4.99 &nbsp;|&nbsp; L $7.99</div>
+            <ul>
+              <li>Mash Potato &amp; Gravy</li>
+              <li>Mac N Cheese</li>
+              <li>Spicy Mac N Cheese</li>
+              <li>Hainan Rice</li>
+              <li>Jambalaya Rice</li>
+              <li>Macaroni Salad</li>
+              <li>Coleslaw</li>
+              <li>Potato Salad</li>
+            </ul>
+          </div>
+          <div>
+            <div class="sides-block" style="margin-bottom:24px;">
+              <h4>Gravy</h4>
+              <div class="sides-price">R $3.99 &nbsp;|&nbsp; L $4.99</div>
+            </div>
+            <div class="sides-block" style="margin-bottom:24px;">
+              <h4>French Fries</h4>
+              <div class="sides-price">R $4.99 &nbsp;|&nbsp; L $7.99</div>
+              <ul style="columns:1;">
+                <li>OG</li>
+                <li>Spicy</li>
+                <li>Salt Pepper</li>
+              </ul>
+            </div>
+            <div class="sides-block">
+              <h4>Biscuits</h4>
+              <ul style="columns:1;">
+                <li>1 for $1.59</li>
+                <li>2 for $2.99</li>
+                <li>3 for $4.49</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 FAMILY SIZE -->
+    <section class="menu-section">
+      <div class="menu-section-inner">
+        <div class="menu-section-header fade-up">
+          <span class="menu-section-num">06</span>
+          <h2 class="heading-lg"><span class="accent">Family</span> Size</h2>
+          <div class="menu-section-line"></div>
+        </div>
+
+        <img src="assets/hillcrest28.jpg" alt="Full family spread" class="menu-section-img fade-up" />
+
+        <div class="family-grid fade-up">
+          <div class="family-card">
+            <h4>Family Feast</h4>
+            <div class="family-price">$59.99</div>
+            <ul>
+              <li>12 PCS Chicken</li>
+              <li>6 Tenders</li>
+              <li>2 L Sides</li>
+              <li>3 Drinks</li>
+              <li>1 L French Fries</li>
+            </ul>
+          </div>
+          <div class="family-card">
+            <h4>Family Favorite</h4>
+            <div class="family-price">$49.99</div>
+            <ul>
+              <li>12 Tenders</li>
+              <li>1 L French Fries</li>
+              <li>2 L Sides</li>
+              <li>3 Drinks</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 CATERING -->
+    <section class="menu-section">
+      <div class="menu-section-inner">
+        <div class="menu-section-header fade-up">
+          <span class="menu-section-num">07</span>
+          <h2 class="heading-lg"><span class="accent">Catering</span> &amp; Party Trays</h2>
+          <div class="menu-section-line"></div>
+        </div>
+        <div class="fade-up" style="max-width:520px;">
+          <p class="text-body" style="margin-bottom:24px;">
+            Planning a party, event, or office lunch? We offer custom catering and party tray options for any occasion. Contact us directly for pricing and availability.
+          </p>
+          <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;">
+            <a href="tel:6192289236" class="btn btn-primary">Call Us Today</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORDER CTA -->
+    <section class="order-cta">
+      <div class="fade-up">
+        <h2 class="heading-lg">Order <span class="accent">Now</span></h2>
+        <p class="text-body">Pickup, delivery, or dine-in. Choose how you want your chicken.</p>
+        <a href="https://order.snackpass.co/69cbf430a225646ad0b8a2bc" target="_blank" rel="noopener" class="btn" style="border-color:var(--cream);color:var(--cream);">Order Online</a>
+        <div class="order-platforms">
+          <a href="https://www.ubereats.com/san-diego/food-delivery/fried-chicken-house-hillcrest/Z0WOa6AyWp2vAVhZaDgWMQ" target="_blank" rel="noopener" class="platform-btn">
+            <img src="https://cdn.simpleicons.org/ubereats/ffffff" alt="" /> Uber Eats
+          </a>
+          <a href="https://www.doordash.com/store/fried-chicken-house-san-diego-24998290/31555964/" target="_blank" rel="noopener" class="platform-btn">
+            <img src="https://cdn.simpleicons.org/doordash/ffffff" alt="" /> DoorDash
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-top">
+        <div class="footer-top-inner">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <img src="assets/LOGOFINAL.png" alt="Fried Chicken House" />
+            </div>
+            <div class="footer-social">
+              <a href="https://www.instagram.com/friedchickenhse" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><img src="https://cdn.simpleicons.org/instagram/73381c" alt="Instagram" /></a>
+              <a href="https://www.yelp.com/biz/fried-chicken-house-san-diego" target="_blank" rel="noopener" class="social-link" aria-label="Yelp"><img src="https://cdn.simpleicons.org/yelp/73381c" alt="Yelp" /></a>
+              <a href="https://www.ubereats.com/san-diego/food-delivery/fried-chicken-house-hillcrest/Z0WOa6AyWp2vAVhZaDgWMQ" target="_blank" rel="noopener" class="social-link" aria-label="Uber Eats"><img src="https://cdn.simpleicons.org/ubereats/73381c" alt="Uber Eats" /></a>
+              <a href="https://www.doordash.com/store/fried-chicken-house-san-diego-24998290/31555964/" target="_blank" rel="noopener" class="social-link" aria-label="DoorDash"><img src="https://cdn.simpleicons.org/doordash/73381c" alt="DoorDash" /></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <p class="footer-label">Navigate</p>
+            <a href="index.html" class="footer-link">Home</a>
+            <a href="menu.html" class="footer-link">Menu</a>
+            <a href="about.html" class="footer-link">About</a>
+            <a href="https://order.snackpass.co/69cbf430a225646ad0b8a2bc" target="_blank" rel="noopener" class="footer-link">Order Online</a>
+          </div>
+          <div class="footer-col">
+            <p class="footer-label">Visit</p>
+            <p class="footer-text">120W Washington St, Ste B<br />San Diego, CA 92103</p>
+            <p class="footer-text">(619) 228-9236</p>
+          </div>
+          <div class="footer-col">
+            <p class="footer-label">Hours</p>
+            <p class="footer-text">Everyday<br />11:00 AM – 3:00 PM<br />4:00 – 9:00 PM</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Fried Chicken House</p>
+        <a href="https://khoiqnguyen.com" target="_blank" rel="noopener" class="footer-credit"><span>Designed by </span>Khoi Nguyen</a>
+      </div>
+    </footer>
+
+    <script>
+      const nav = document.getElementById('nav');
+      window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+      nav.classList.add('scrolled');
+
+      const toggle = document.getElementById('navToggle');
+      const links = document.getElementById('navLinks');
+      toggle.addEventListener('click', () => { toggle.classList.toggle('open'); links.classList.toggle('open'); });
+      links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { toggle.classList.remove('open'); links.classList.remove('open'); }));
+
+      const observer = new IntersectionObserver(
+        entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll('.fade-up, .scale-in').forEach(el => observer.observe(el));
+
+      const marquees = document.querySelectorAll('.marquee-track');
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        marquees.forEach((track, i) => {
+          const speed = i % 2 === 0 ? 0.4 : -0.4;
+          track.style.transform = `translateX(${y * speed * -1}px)`;
+        });
+      }, { passive: true });
+    </script>
+  </body>
+</html>
