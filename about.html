@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About — Fried Chicken House</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* ===== PAGE HERO ===== */
+      .page-hero {
+        position: relative;
+        height: 55vh;
+        min-height: 380px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: var(--brown-dark);
+      }
+
+      .page-hero-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.3;
+      }
+
+      .page-hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+      }
+
+      .page-hero-content .heading-xl {
+        color: var(--white);
+        animation: heroIn 0.7s ease both;
+      }
+
+      .page-hero-content .heading-xl .thin {
+        display: block;
+        font-size: 0.45em;
+        letter-spacing: 0.1em;
+        opacity: 0.5;
+      }
+
+      @keyframes heroIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* ===== STORY — Editorial broken grid ===== */
+
+      .story {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-left: 3px solid var(--orange);
+        border-right: 3px solid var(--orange);
+        padding: 0;
+        overflow: hidden;
+        max-height: 600px;
+        position: relative;
+      }
+
+      .story .watermark {
+        top: -10px;
+        right: -10px;
+        left: auto;
+      }
+
+      .story-img {
+        overflow: hidden;
+      }
+
+      .story-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .story-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 56px 56px;
+        position: relative;
+        z-index: 1;
+        max-width: 520px;
+      }
+
+      .story-text .eyebrow { margin-bottom: 24px; align-self: flex-start; }
+      .story-text .heading-lg { margin-bottom: 24px; }
+      .story-text .text-body { margin-bottom: 20px; max-width: 440px; }
+
+      /* ===== VALUES — Big editorial cards ===== */
+      .values {
+        padding: 100px 48px 120px;
+        background: var(--white);
+        position: relative;
+        overflow: hidden;
+        border-left: 3px solid var(--orange);
+        border-right: 3px solid var(--orange);
+      }
+
+      .values .watermark {
+        bottom: 30px;
+        left: -40px;
+      }
+
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        max-width: var(--max-width);
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      .value-card {
+        padding: 48px 32px;
+        border-radius: var(--radius);
+        background: var(--cream);
+        border: 1.5px solid var(--cream-border);
+        transition: transform var(--transition), box-shadow var(--transition);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .value-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .value-card-number {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+        font-size: 5rem;
+        line-height: 1;
+        color: rgba(243, 122, 33, 0.07);
+        position: absolute;
+        top: -8px;
+        right: 16px;
+      }
+
+      .value-card .heading-md {
+        margin-bottom: 14px;
+        position: relative;
+      }
+
+      .value-card .text-body {
+        font-size: 0.88rem;
+        position: relative;
+      }
+
+
+      /* ===== LOCATION ===== */
+      .location {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background: var(--cream-dark);
+        border-left: 3px solid var(--orange);
+        border-right: 3px solid var(--orange);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .location .watermark {
+        top: -10px;
+        right: -10px;
+        left: auto;
+        z-index: 0;
+      }
+
+      .location-map {
+        overflow: hidden;
+      }
+
+      .location-map iframe {
+        width: 100%;
+        height: 100%;
+        min-height: 400px;
+        border: 0;
+        display: block;
+      }
+
+      .location-details {
+        padding: 56px 48px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .location-details .heading-lg { margin-bottom: 28px; }
+
+      .info-row {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        margin-bottom: 20px;
+      }
+
+      .info-row .info-label {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.62rem;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--orange);
+        min-width: 72px;
+        padding-top: 4px;
+      }
+
+      .info-row .info-value {
+        font-size: 0.92rem;
+        font-weight: 400;
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 900px) {
+        .story { grid-template-columns: 1fr; }
+        .story-img { min-height: 320px; }
+        .story-text { padding: 48px 24px; }
+
+        .values { padding: 72px 24px 80px; }
+        .values-grid { grid-template-columns: 1fr; gap: 16px; }
+
+
+        .location { grid-template-columns: 1fr; }
+        .location-map iframe { min-height: 300px; }
+        .location-details { padding: 40px 24px; }
+      }
+
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+      <a class="nav-logo" href="index.html">
+        <img src="assets/LOGOFINAL.png" alt="Fried Chicken House" />
+      </a>
+      <div class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li>
+          <a href="https://order.snackpass.co/69cbf430a225646ad0b8a2bc"
+            target="_blank" rel="noopener noreferrer" class="nav-cta">Order Online</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <img class="page-hero-bg" src="assets/hillcrest28.jpg" alt="Chicken spread" />
+      <div class="page-hero-content">
+        <h1 class="heading-xl">
+          <span class="thin">Good Food, Real People</span>
+          Our <span class="accent">Story</span>
+        </h1>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee">
+      <div class="marquee-track">
+        <span class="marquee-item">Hand-Breaded <span class="dot"></span></span>
+        <span class="marquee-item">Family Recipes <span class="dot"></span></span>
+        <span class="marquee-item">Made Fresh Daily <span class="dot"></span></span>
+        <span class="marquee-item">Hillcrest, San Diego <span class="dot"></span></span>
+        <span class="marquee-item">Since Day One <span class="dot"></span></span>
+        <span class="marquee-item">Real Fried Chicken <span class="dot"></span></span>
+        <span class="marquee-item">Hand-Breaded <span class="dot"></span></span>
+        <span class="marquee-item">Family Recipes <span class="dot"></span></span>
+        <span class="marquee-item">Made Fresh Daily <span class="dot"></span></span>
+        <span class="marquee-item">Hillcrest, San Diego <span class="dot"></span></span>
+        <span class="marquee-item">Since Day One <span class="dot"></span></span>
+        <span class="marquee-item">Real Fried Chicken <span class="dot"></span></span>
+      </div>
+    </div>
+
+    <!-- STORY -->
+    <section class="story">
+      <div class="watermark watermark-filled">Hillcrest</div>
+      <div class="story-img">
+        <img src="assets/hillcrest25.jpg" alt="Chicken platter on tile" />
+      </div>
+      <div class="story-text fade-up">
+          <span class="eyebrow">Who We Are</span>
+          <h2 class="heading-lg">Born in<br /><span class="accent">Hillcrest</span></h2>
+          <p class="text-body">
+            Fried Chicken House started with a simple idea: make real, crispy fried chicken the
+            way it should be — hand-breaded, cooked fresh, and served with heart.
+          </p>
+          <p class="text-body">
+            Nestled in San Diego's vibrant Hillcrest neighborhood, we've become the go-to spot
+            for golden, juicy chicken that keeps people coming back. No shortcuts. No frozen. Just
+            honest food made with care.
+          </p>
+          <a href="menu.html" class="btn btn-primary" style="margin-top:16px;align-self:flex-start;">See Our Menu</a>
+      </div>
+    </section>
+
+    <!-- ORANGE MARQUEE -->
+    <div class="marquee">
+      <div class="marquee-track">
+        <span class="marquee-item">Always Fresh <span class="dot"></span></span>
+        <span class="marquee-item">Made With Love <span class="dot"></span></span>
+        <span class="marquee-item">Community First <span class="dot"></span></span>
+        <span class="marquee-item">No Shortcuts <span class="dot"></span></span>
+        <span class="marquee-item">Golden Perfection <span class="dot"></span></span>
+        <span class="marquee-item">Always Fresh <span class="dot"></span></span>
+        <span class="marquee-item">Made With Love <span class="dot"></span></span>
+        <span class="marquee-item">Community First <span class="dot"></span></span>
+        <span class="marquee-item">No Shortcuts <span class="dot"></span></span>
+        <span class="marquee-item">Golden Perfection <span class="dot"></span></span>
+      </div>
+    </div>
+
+    <!-- VALUES -->
+    <section class="values">
+      <div class="watermark">Promise</div>
+      <div class="section-header fade-up">
+        <span class="eyebrow">What We Stand For</span>
+        <h2 class="heading-lg">Our <span class="accent">Promise</span></h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card fade-up">
+          <span class="value-card-number">01</span>
+          <h3 class="heading-md"><span class="accent">Always</span> Fresh</h3>
+          <p class="text-body">Every piece is hand-breaded and fried to order. Never frozen, never reheated. That's the deal.</p>
+        </div>
+        <div class="value-card fade-up fade-up-delay-1">
+          <span class="value-card-number">02</span>
+          <h3 class="heading-md">Made With <span class="accent">Love</span></h3>
+          <p class="text-body">Family recipes passed down and perfected — cooking the way your grandma would approve of.</p>
+        </div>
+        <div class="value-card fade-up fade-up-delay-2">
+          <span class="value-card-number">03</span>
+          <h3 class="heading-md"><span class="accent">Community</span> First</h3>
+          <p class="text-body">Proudly serving Hillcrest and greater San Diego. This is our neighborhood and our people.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee">
+      <div class="marquee-track">
+        <span class="marquee-item">Come Visit <span class="dot"></span></span>
+        <span class="marquee-item">Hillcrest <span class="dot"></span></span>
+        <span class="marquee-item">San Diego <span class="dot"></span></span>
+        <span class="marquee-item">120W Washington St <span class="dot"></span></span>
+        <span class="marquee-item">Open Everyday <span class="dot"></span></span>
+        <span class="marquee-item">Come Visit <span class="dot"></span></span>
+        <span class="marquee-item">Hillcrest <span class="dot"></span></span>
+        <span class="marquee-item">San Diego <span class="dot"></span></span>
+        <span class="marquee-item">120W Washington St <span class="dot"></span></span>
+        <span class="marquee-item">Open Everyday <span class="dot"></span></span>
+      </div>
+    </div>
+
+    <!-- LOCATION -->
+    <section class="location">
+      <div class="watermark watermark-filled">Visit</div>
+      <div class="location-map fade-up">
+        <iframe
+          src="https://maps.google.com/maps?q=Fried+Chicken+House,+120+W+Washington+St+Ste+B,+San+Diego,+CA+92103&output=embed"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Fried Chicken House location"
+        ></iframe>
+      </div>
+      <div class="location-details fade-up fade-up-delay-1">
+        <h2 class="heading-lg">Come <span class="accent">Visit</span></h2>
+        <div class="info-row">
+          <span class="info-label">Address</span>
+          <span class="info-value">120W Washington St, Ste B<br />San Diego, CA 92103</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Hours</span>
+          <span class="info-value">Everyday: 11:00 AM – 3:00 PM &amp; 4:00 – 9:00 PM</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Phone</span>
+          <span class="info-value">(619) 228-9236</span>
+        </div>
+        <a href="https://maps.google.com/?q=120W+Washington+St+Ste+B+San+Diego+CA+92103"
+          target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:16px;">Get Directions</a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-top">
+        <div class="footer-top-inner">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <img src="assets/LOGOFINAL.png" alt="Fried Chicken House" />
+            </div>
+            <div class="footer-social">
+              <a href="https://www.instagram.com/friedchickenhse" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><img src="https://cdn.simpleicons.org/instagram/73381c" alt="Instagram" /></a>
+              <a href="https://www.yelp.com/biz/fried-chicken-house-san-diego" target="_blank" rel="noopener" class="social-link" aria-label="Yelp"><img src="https://cdn.simpleicons.org/yelp/73381c" alt="Yelp" /></a>
+              <a href="https://www.ubereats.com/san-diego/food-delivery/fried-chicken-house-hillcrest/Z0WOa6AyWp2vAVhZaDgWMQ" target="_blank" rel="noopener" class="social-link" aria-label="Uber Eats"><img src="https://cdn.simpleicons.org/ubereats/73381c" alt="Uber Eats" /></a>
+              <a href="https://www.doordash.com/store/fried-chicken-house-san-diego-24998290/31555964/" target="_blank" rel="noopener" class="social-link" aria-label="DoorDash"><img src="https://cdn.simpleicons.org/doordash/73381c" alt="DoorDash" /></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <p class="footer-label">Navigate</p>
+            <a href="index.html" class="footer-link">Home</a>
+            <a href="menu.html" class="footer-link">Menu</a>
+            <a href="about.html" class="footer-link">About</a>
+            <a href="https://order.snackpass.co/69cbf430a225646ad0b8a2bc" target="_blank" rel="noopener" class="footer-link">Order Online</a>
+          </div>
+          <div class="footer-col">
+            <p class="footer-label">Visit</p>
+            <p class="footer-text">120W Washington St, Ste B<br />San Diego, CA 92103</p>
+            <p class="footer-text">(619) 228-9236</p>
+          </div>
+          <div class="footer-col">
+            <p class="footer-label">Hours</p>
+            <p class="footer-text">Everyday<br />11:00 AM – 3:00 PM<br />4:00 – 9:00 PM</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Fried Chicken House</p>
+        <a href="https://khoiqnguyen.com" target="_blank" rel="noopener" class="footer-credit"><span>Designed by </span>Khoi Nguyen</a>
+      </div>
+    </footer>
+
+    <script>
+      const nav = document.getElementById('nav');
+      window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+      nav.classList.add('scrolled');
+
+      const toggle = document.getElementById('navToggle');
+      const links = document.getElementById('navLinks');
+      toggle.addEventListener('click', () => { toggle.classList.toggle('open'); links.classList.toggle('open'); });
+      links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { toggle.classList.remove('open'); links.classList.remove('open'); }));
+
+      const observer = new IntersectionObserver(
+        entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll('.fade-up, .scale-in').forEach(el => observer.observe(el));
+
+      const marquees = document.querySelectorAll('.marquee-track');
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        marquees.forEach((track, i) => {
+          const speed = i % 2 === 0 ? 0.4 : -0.4;
+          track.style.transform = `translateX(${y * speed * -1}px)`;
+        });
+      }, { passive: true });
+    </script>
+  </body>
+</html>
