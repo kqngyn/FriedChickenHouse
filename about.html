@@ -441,8 +441,8 @@
 
       const toggle = document.getElementById('navToggle');
       const links = document.getElementById('navLinks');
-      toggle.addEventListener('click', () => { toggle.classList.toggle('open'); links.classList.toggle('open'); });
-      links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { toggle.classList.remove('open'); links.classList.remove('open'); }));
+      toggle.addEventListener('click', () => { toggle.classList.toggle('open'); links.classList.toggle('open'); document.body.classList.toggle('nav-open'); });
+      links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { toggle.classList.remove('open'); links.classList.remove('open'); document.body.classList.remove('nav-open'); }));
 
       const observer = new IntersectionObserver(
         entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
@@ -454,8 +454,8 @@
       window.addEventListener('scroll', () => {
         const y = window.scrollY;
         marquees.forEach((track, i) => {
-          const speed = i % 2 === 0 ? 0.4 : -0.4;
-          track.style.transform = `translateX(${y * speed * -1}px)`;
+          const dir = i % 2 === 0 ? -1 : 1;
+          track.style.transform = `translateX(${dir * y * 0.3}px)`;
         });
       }, { passive: true });
     </script>

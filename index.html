@@ -587,11 +587,13 @@
       toggle.addEventListener('click', () => {
         toggle.classList.toggle('open');
         links.classList.toggle('open');
+        document.body.classList.toggle('nav-open');
       });
       links.querySelectorAll('a').forEach(a =>
         a.addEventListener('click', () => {
           toggle.classList.remove('open');
           links.classList.remove('open');
+          document.body.classList.remove('nav-open');
         })
       );
 
@@ -604,14 +606,12 @@
 
       // Scroll-driven marquees
       const marquees = document.querySelectorAll('.marquee-track');
-      let lastScroll = 0;
       window.addEventListener('scroll', () => {
         const y = window.scrollY;
         marquees.forEach((track, i) => {
-          const speed = i % 2 === 0 ? 0.4 : -0.4;
-          track.style.transform = `translateX(${y * speed * -1}px)`;
+          const dir = i % 2 === 0 ? -1 : 1;
+          track.style.transform = `translateX(${dir * y * 0.3}px)`;
         });
-        lastScroll = y;
       }, { passive: true });
     </script>
   </body>

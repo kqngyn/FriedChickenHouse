@@ -251,6 +251,13 @@
         line-height: 1.5;
       }
 
+      /* Seafood split */
+      .seafood-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+      }
+
       /* Sides table */
       .sides-grid {
         display: grid;
@@ -443,6 +450,7 @@
         .menu-section { padding: 56px 24px; }
         .price-grid { grid-template-columns: repeat(3, 1fr); }
         .menu-items-grid { grid-template-columns: 1fr 1fr; }
+        .seafood-grid { grid-template-columns: 1fr; gap: 32px; }
         .sides-grid { grid-template-columns: 1fr; }
         .family-grid { grid-template-columns: 1fr; }
         .menu-highlight-bg { height: 300px; }
@@ -711,7 +719,7 @@
 
         <img src="assets/hillcrest31.jpg" alt="Fried seafood" class="menu-section-img fade-up" />
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;" class="fade-up">
+        <div class="seafood-grid fade-up">
           <div>
             <h3 class="heading-sm" style="margin-bottom:16px;">Flounder Fish</h3>
             <div class="price-grid" style="grid-template-columns:repeat(3,1fr);">
@@ -933,8 +941,8 @@
 
       const toggle = document.getElementById('navToggle');
       const links = document.getElementById('navLinks');
-      toggle.addEventListener('click', () => { toggle.classList.toggle('open'); links.classList.toggle('open'); });
-      links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { toggle.classList.remove('open'); links.classList.remove('open'); }));
+      toggle.addEventListener('click', () => { toggle.classList.toggle('open'); links.classList.toggle('open'); document.body.classList.toggle('nav-open'); });
+      links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { toggle.classList.remove('open'); links.classList.remove('open'); document.body.classList.remove('nav-open'); }));
 
       const observer = new IntersectionObserver(
         entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
@@ -946,8 +954,8 @@
       window.addEventListener('scroll', () => {
         const y = window.scrollY;
         marquees.forEach((track, i) => {
-          const speed = i % 2 === 0 ? 0.4 : -0.4;
-          track.style.transform = `translateX(${y * speed * -1}px)`;
+          const dir = i % 2 === 0 ? -1 : 1;
+          track.style.transform = `translateX(${dir * y * 0.3}px)`;
         });
       }, { passive: true });
     </script>
