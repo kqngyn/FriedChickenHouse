@@ -58,7 +58,7 @@
       .hero-line .thin {
         font-weight: 200;
         color: var(--brown);
-        opacity: 0.4;
+        opacity: 0.65;
       }
 
       /* Right side text block */
@@ -132,7 +132,7 @@
         flex-shrink: 0;
       }
 
-      .hero-video-bar-text h3 {
+      .hero-video-bar-text h2 {
         font-family: 'Oswald', sans-serif;
         font-weight: 700;
         font-size: clamp(1.2rem, 2.5vw, 1.8rem);
@@ -342,26 +342,28 @@
     </style>
   </head>
   <body>
+    <a href="#main" class="skip-nav">Skip to content</a>
     <!-- NAV -->
-    <nav class="nav" id="nav">
+    <nav class="nav" id="nav" aria-label="Main navigation">
       <a class="nav-logo" href="index.html">
-        <img src="assets/LOGOFINAL.png" alt="Fried Chicken House" />
+        <img src="assets/LOGOFINAL.png" alt="Fried Chicken House home" />
       </a>
-      <div class="nav-toggle" id="navToggle" aria-label="Menu">
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
-      </div>
-      <ul class="nav-links" id="navLinks">
+      </button>
+      <ul class="nav-links" id="navLinks" role="list">
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="menu.html">Menu</a></li>
         <li><a href="about.html">About</a></li>
         <li>
           <a href="https://order.snackpass.co/69cbf430a225646ad0b8a2bc"
-            target="_blank" rel="noopener noreferrer" class="nav-cta">Order Online</a>
+            target="_blank" rel="noopener noreferrer" class="nav-cta" aria-label="Order Online (opens in new tab)">Order Online</a>
         </li>
       </ul>
     </nav>
 
     <!-- HERO -->
+    <main id="main">
     <section class="hero">
       <div class="hero-editorial">
         <!-- Giant editorial text -->
@@ -380,12 +382,12 @@
 
       <!-- Video section -->
       <div class="hero-video-section">
-        <video src="assets/0427.mov" autoplay muted loop playsinline></video>
+        <video src="assets/0427.mov" autoplay muted loop playsinline aria-hidden="true"></video>
         <div class="hero-video-bar">
           <div class="hero-video-bar-text">
-            <h3>Crispy, Bold &amp; Made Fresh — Every Single Day.</h3>
+            <h2>Crispy, Bold &amp; Made Fresh — Every Single Day.</h2>
           </div>
-          <a href="https://order.snackpass.co/69cbf430a225646ad0b8a2bc" target="_blank" rel="noopener" class="btn" style="border-color:var(--cream);color:var(--cream);">Order Online</a>
+          <a href="https://order.snackpass.co/69cbf430a225646ad0b8a2bc" target="_blank" rel="noopener" class="btn" style="border-color:var(--cream);color:var(--cream);" aria-label="Order Online (opens in new tab)">Order Online</a>
         </div>
       </div>
     </section>
@@ -639,9 +641,11 @@
             <span class="info-value">(619) 228-9236</span>
           </div>
           <a href="https://maps.google.com/?q=120W+Washington+St+Ste+B+San+Diego+CA+92103"
-            target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:16px;">Get Directions</a>
+            target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:16px;" aria-label="Get Directions (opens in new tab)">Get Directions</a>
       </div>
     </section>
+
+    </main>
 
     <!-- FOOTER -->
     <footer>
@@ -671,7 +675,7 @@
             <a href="index.html" class="footer-link">Home</a>
             <a href="menu.html" class="footer-link">Menu</a>
             <a href="about.html" class="footer-link">About</a>
-            <a href="https://order.snackpass.co/69cbf430a225646ad0b8a2bc" target="_blank" rel="noopener" class="footer-link">Order Online</a>
+            <a href="https://order.snackpass.co/69cbf430a225646ad0b8a2bc" target="_blank" rel="noopener" class="footer-link" aria-label="Order Online (opens in new tab)">Order Online</a>
           </div>
           <div class="footer-col">
             <p class="footer-label">Visit</p>
@@ -686,7 +690,7 @@
       </div>
       <div class="footer-bottom">
         <p class="footer-copy">&copy; 2026 Fried Chicken House</p>
-        <a href="https://khoiqnguyen.com" target="_blank" rel="noopener" class="footer-credit"><span>Designed by </span>Khoi Nguyen</a>
+        <a href="https://khoiqnguyen.com" target="_blank" rel="noopener" class="footer-credit" aria-label="Designed by Khoi Nguyen (opens in new tab)"><span>Designed by </span>Khoi Nguyen</a>
       </div>
     </footer>
 
@@ -699,15 +703,19 @@
       const toggle = document.getElementById('navToggle');
       const links = document.getElementById('navLinks');
       toggle.addEventListener('click', () => {
-        toggle.classList.toggle('open');
+        const isOpen = toggle.classList.toggle('open');
         links.classList.toggle('open');
         document.body.classList.toggle('nav-open');
+        toggle.setAttribute('aria-expanded', isOpen);
+        toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
       });
       links.querySelectorAll('a').forEach(a =>
         a.addEventListener('click', () => {
           toggle.classList.remove('open');
           links.classList.remove('open');
           document.body.classList.remove('nav-open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', 'Open menu');
         })
       );
 
