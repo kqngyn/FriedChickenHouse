@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accessibility — Fried Chicken House</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .a11y-page {
+        padding: 160px 48px 100px;
+        max-width: 720px;
+        margin: 0 auto;
+      }
+
+      .a11y-page .heading-lg {
+        margin-bottom: 32px;
+      }
+
+      .a11y-page .text-body {
+        margin-bottom: 20px;
+      }
+
+      .a11y-page h2 {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--brown);
+        margin-top: 40px;
+        margin-bottom: 12px;
+      }
+
+      .a11y-page ul {
+        list-style: none;
+        margin-bottom: 20px;
+      }
+
+      .a11y-page li {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.92rem;
+        font-weight: 400;
+        color: var(--text-muted);
+        line-height: 1.75;
+        padding-left: 20px;
+        position: relative;
+      }
+
+      .a11y-page li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 11px;
+        width: 6px;
+        height: 6px;
+        background: var(--orange);
+        border-radius: 50%;
+      }
+
+      .a11y-page .updated {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.78rem;
+        font-weight: 400;
+        color: var(--text-muted);
+        margin-top: 48px;
+        padding-top: 24px;
+        border-top: 1px solid var(--cream-border);
+      }
+
+      @media (max-width: 900px) {
+        .a11y-page { padding: 120px 24px 72px; }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main" class="skip-nav">Skip to content</a>
+    <!-- NAV -->
+    <nav class="nav" id="nav" aria-label="Main navigation">
+      <a class="nav-logo" href="index.html">
+        <img src="assets/LOGOFINAL.png" alt="Fried Chicken House home" />
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="about.html">About</a></li>
+        <li>
+          <a href="https://order.snackpass.co/69cbf430a225646ad0b8a2bc"
+            target="_blank" rel="noopener noreferrer" class="nav-cta" aria-label="Order Online (opens in new tab)">Order Online</a>
+        </li>
+      </ul>
+    </nav>
+
+    <main id="main">
+      <div class="a11y-page">
+        <h1 class="heading-lg"><span class="accent">Accessibility</span> Statement</h1>
+
+        <p class="text-body">
+          Fried Chicken House is committed to ensuring that our website is accessible to all visitors, including people with disabilities. We strive to provide an inclusive digital experience that allows everyone to access our menu, find our location, and place orders with ease.
+        </p>
+
+        <h2>Our Standards</h2>
+        <p class="text-body">
+          We aim to conform to the Web Content Accessibility Guidelines (WCAG) 2.1 at Level AA. These guidelines define how to make web content more accessible to people with a wide range of disabilities, including visual, auditory, physical, speech, cognitive, and neurological disabilities.
+        </p>
+
+        <h2>What We've Done</h2>
+        <ul>
+          <li>Sufficient color contrast ratios for all text and interactive elements</li>
+          <li>Keyboard navigation support throughout the entire site</li>
+          <li>Screen reader compatible markup with proper headings, landmarks, and ARIA labels</li>
+          <li>Skip navigation link for keyboard users</li>
+          <li>Descriptive alt text on all images</li>
+          <li>Clear indication when links open in a new tab</li>
+          <li>Minimum 44px touch targets for mobile users</li>
+          <li>Reduced motion support for users who prefer minimal animation</li>
+          <li>Semantic HTML structure with proper heading hierarchy</li>
+        </ul>
+
+        <h2>Known Limitations</h2>
+        <ul>
+          <li>The embedded Google Map may not be fully accessible to all screen readers. Our full address is provided in text next to the map for all users: 120W Washington St, Ste B, San Diego, CA 92103.</li>
+          <li>Some third-party content (social media icons, ordering platform) may have accessibility limitations outside of our control.</li>
+        </ul>
+
+        <h2>Need Help?</h2>
+        <p class="text-body">
+          If you have difficulty accessing any part of our website, or if you need information in an alternative format, please don't hesitate to contact us. We're happy to assist.
+        </p>
+        <ul>
+          <li>Phone: (619) 228-9236</li>
+          <li>Visit us: 120W Washington St, Ste B, San Diego, CA 92103</li>
+          <li>Hours: Everyday, 11:00 AM – 3:00 PM &amp; 4:00 – 9:00 PM</li>
+        </ul>
+
+        <h2>Feedback</h2>
+        <p class="text-body">
+          We welcome your feedback on the accessibility of our website. If you encounter any barriers or have suggestions for improvement, please call us at (619) 228-9236. We take all feedback seriously and will do our best to address your concerns promptly.
+        </p>
+
+        <p class="updated">This statement was last updated on May 2026.</p>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-top">
+        <div class="footer-top-inner">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <img src="assets/LOGOFINAL.png" alt="Fried Chicken House" />
+            </div>
+            <div class="footer-social">
+              <a href="https://www.instagram.com/friedchickenhse" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><img src="https://cdn.simpleicons.org/instagram/73381c" alt="Instagram" /></a>
+              <a href="https://www.yelp.com/biz/fried-chicken-house-san-diego" target="_blank" rel="noopener" class="social-link" aria-label="Yelp"><img src="https://cdn.simpleicons.org/yelp/73381c" alt="Yelp" /></a>
+              <a href="https://www.ubereats.com/san-diego/food-delivery/fried-chicken-house-hillcrest/Z0WOa6AyWp2vAVhZaDgWMQ" target="_blank" rel="noopener" class="social-link" aria-label="Uber Eats"><img src="https://cdn.simpleicons.org/ubereats/73381c" alt="Uber Eats" /></a>
+              <a href="https://www.doordash.com/store/fried-chicken-house-san-diego-24998290/31555964/" target="_blank" rel="noopener" class="social-link" aria-label="DoorDash"><img src="https://cdn.simpleicons.org/doordash/73381c" alt="DoorDash" /></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <p class="footer-label">Navigate</p>
+            <a href="index.html" class="footer-link">Home</a>
+            <a href="menu.html" class="footer-link">Menu</a>
+            <a href="about.html" class="footer-link">About</a>
+            <a href="https://order.snackpass.co/69cbf430a225646ad0b8a2bc" target="_blank" rel="noopener" class="footer-link" aria-label="Order Online (opens in new tab)">Order Online</a>
+          </div>
+          <div class="footer-col">
+            <p class="footer-label">Visit</p>
+            <p class="footer-text">120W Washington St, Ste B<br />San Diego, CA 92103</p>
+            <p class="footer-text">(619) 228-9236</p>
+          </div>
+          <div class="footer-col">
+            <p class="footer-label">Hours</p>
+            <p class="footer-text">Everyday<br />11:00 AM – 3:00 PM<br />4:00 – 9:00 PM</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Fried Chicken House</p>
+        <a href="https://khoiqnguyen.com" target="_blank" rel="noopener" class="footer-credit" aria-label="Designed by Khoi Nguyen (opens in new tab)"><span>Designed by </span>Khoi Nguyen</a>
+      </div>
+    </footer>
+
+    <script>
+      const nav = document.getElementById('nav');
+      window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+      const toggle = document.getElementById('navToggle');
+      const links = document.getElementById('navLinks');
+      toggle.addEventListener('click', () => { const isOpen = toggle.classList.toggle('open'); links.classList.toggle('open'); document.body.classList.toggle('nav-open'); toggle.setAttribute('aria-expanded', isOpen); toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu'); });
+      links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { toggle.classList.remove('open'); links.classList.remove('open'); document.body.classList.remove('nav-open'); toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Open menu'); }));
+    </script>
+  </body>
+</html>
