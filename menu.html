@@ -43,7 +43,7 @@
         display: block;
         font-size: 0.45em;
         letter-spacing: 0.1em;
-        opacity: 0.5;
+        opacity: 0.7;
       }
 
       @keyframes heroIn {
@@ -173,7 +173,7 @@
         border-radius: 50%;
         margin-right: 8px;
         vertical-align: middle;
-        opacity: 0.5;
+        opacity: 0.7;
       }
 
       /* Combo callout */
@@ -382,7 +382,7 @@
       }
 
       .menu-highlight-text .text-body {
-        color: rgba(253, 248, 242, 0.55);
+        color: rgba(253, 248, 242, 0.75);
         margin-bottom: 28px;
       }
 
@@ -399,7 +399,7 @@
       }
 
       .order-cta .text-body {
-        color: rgba(253, 248, 242, 0.4);
+        color: rgba(253, 248, 242, 0.75);
         margin: 0 auto 32px;
         max-width: 400px;
       }
@@ -417,8 +417,8 @@
         align-items: center;
         gap: 10px;
         padding: 11px 24px;
-        border: 1.5px solid rgba(255, 255, 255, 0.12);
-        color: rgba(253, 248, 242, 0.6);
+        border: 1.5px solid rgba(255, 255, 255, 0.3);
+        color: rgba(253, 248, 242, 0.8);
         font-family: 'Oswald', sans-serif;
         font-weight: 500;
         font-size: 0.8rem;
@@ -472,26 +472,28 @@
     </style>
   </head>
   <body>
+    <a href="#main" class="skip-nav">Skip to content</a>
     <!-- NAV -->
-    <nav class="nav" id="nav">
+    <nav class="nav" id="nav" aria-label="Main navigation">
       <a class="nav-logo" href="index.html">
-        <img src="assets/LOGOFINAL.png" alt="Fried Chicken House" />
+        <img src="assets/LOGOFINAL.png" alt="Fried Chicken House home" />
       </a>
-      <div class="nav-toggle" id="navToggle" aria-label="Menu">
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
-      </div>
-      <ul class="nav-links" id="navLinks">
+      </button>
+      <ul class="nav-links" id="navLinks" role="list">
         <li><a href="index.html">Home</a></li>
         <li><a href="menu.html" class="active">Menu</a></li>
         <li><a href="about.html">About</a></li>
         <li>
           <a href="https://order.snackpass.co/69cbf430a225646ad0b8a2bc"
-            target="_blank" rel="noopener noreferrer" class="nav-cta">Order Online</a>
+            target="_blank" rel="noopener noreferrer" class="nav-cta" aria-label="Order Online (opens in new tab)">Order Online</a>
         </li>
       </ul>
     </nav>
 
     <!-- PAGE HERO -->
+    <main id="main">
     <section class="page-hero">
       <img class="page-hero-bg" src="assets/hillcrest12.jpg" alt="Chicken flat lay" />
       <div class="page-hero-content">
@@ -648,7 +650,7 @@
           <span class="eyebrow" style="border-color:rgba(255,255,255,0.15);background:rgba(255,255,255,0.06);color:var(--orange-light);">House Sauces</span>
           <h2 class="heading-lg" style="margin-top:20px;">Sauced to <span class="accent">Perfection</span></h2>
           <p class="text-body">Ranch, honey mustard, hot sauce, or our signature cheese drizzle.</p>
-          <a href="https://order.snackpass.co/69cbf430a225646ad0b8a2bc" target="_blank" rel="noopener" class="btn btn-outline-light">Order Now</a>
+          <a href="https://order.snackpass.co/69cbf430a225646ad0b8a2bc" target="_blank" rel="noopener" class="btn btn-outline-light" aria-label="Order Now (opens in new tab)">Order Now</a>
         </div>
       </div>
     </div>
@@ -925,17 +927,19 @@
       <div class="fade-up">
         <h2 class="heading-lg">Order <span class="accent">Now</span></h2>
         <p class="text-body">Pickup, delivery, or dine-in. Choose how you want your chicken.</p>
-        <a href="https://order.snackpass.co/69cbf430a225646ad0b8a2bc" target="_blank" rel="noopener" class="btn" style="border-color:var(--cream);color:var(--cream);">Order Online</a>
+        <a href="https://order.snackpass.co/69cbf430a225646ad0b8a2bc" target="_blank" rel="noopener" class="btn" style="border-color:var(--cream);color:var(--cream);" aria-label="Order Online (opens in new tab)">Order Online</a>
         <div class="order-platforms">
-          <a href="https://www.ubereats.com/san-diego/food-delivery/fried-chicken-house-hillcrest/Z0WOa6AyWp2vAVhZaDgWMQ" target="_blank" rel="noopener" class="platform-btn">
+          <a href="https://www.ubereats.com/san-diego/food-delivery/fried-chicken-house-hillcrest/Z0WOa6AyWp2vAVhZaDgWMQ" target="_blank" rel="noopener" class="platform-btn" aria-label="Order on Uber Eats (opens in new tab)">
             <img src="https://cdn.simpleicons.org/ubereats/ffffff" alt="" /> Uber Eats
           </a>
-          <a href="https://www.doordash.com/store/fried-chicken-house-san-diego-24998290/31555964/" target="_blank" rel="noopener" class="platform-btn">
+          <a href="https://www.doordash.com/store/fried-chicken-house-san-diego-24998290/31555964/" target="_blank" rel="noopener" class="platform-btn" aria-label="Order on DoorDash (opens in new tab)">
             <img src="https://cdn.simpleicons.org/doordash/ffffff" alt="" /> DoorDash
           </a>
         </div>
       </div>
     </section>
+
+    </main>
 
     <!-- FOOTER -->
     <footer>
@@ -957,7 +961,7 @@
             <a href="index.html" class="footer-link">Home</a>
             <a href="menu.html" class="footer-link">Menu</a>
             <a href="about.html" class="footer-link">About</a>
-            <a href="https://order.snackpass.co/69cbf430a225646ad0b8a2bc" target="_blank" rel="noopener" class="footer-link">Order Online</a>
+            <a href="https://order.snackpass.co/69cbf430a225646ad0b8a2bc" target="_blank" rel="noopener" class="footer-link" aria-label="Order Online (opens in new tab)">Order Online</a>
           </div>
           <div class="footer-col">
             <p class="footer-label">Visit</p>
@@ -972,7 +976,7 @@
       </div>
       <div class="footer-bottom">
         <p class="footer-copy">&copy; 2026 Fried Chicken House</p>
-        <a href="https://khoiqnguyen.com" target="_blank" rel="noopener" class="footer-credit"><span>Designed by </span>Khoi Nguyen</a>
+        <a href="https://khoiqnguyen.com" target="_blank" rel="noopener" class="footer-credit" aria-label="Designed by Khoi Nguyen (opens in new tab)"><span>Designed by </span>Khoi Nguyen</a>
       </div>
     </footer>
 
@@ -983,8 +987,8 @@
 
       const toggle = document.getElementById('navToggle');
       const links = document.getElementById('navLinks');
-      toggle.addEventListener('click', () => { toggle.classList.toggle('open'); links.classList.toggle('open'); document.body.classList.toggle('nav-open'); });
-      links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { toggle.classList.remove('open'); links.classList.remove('open'); document.body.classList.remove('nav-open'); }));
+      toggle.addEventListener('click', () => { const isOpen = toggle.classList.toggle('open'); links.classList.toggle('open'); document.body.classList.toggle('nav-open'); toggle.setAttribute('aria-expanded', isOpen); toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu'); });
+      links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { toggle.classList.remove('open'); links.classList.remove('open'); document.body.classList.remove('nav-open'); toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Open menu'); }));
 
       const observer = new IntersectionObserver(
         entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
